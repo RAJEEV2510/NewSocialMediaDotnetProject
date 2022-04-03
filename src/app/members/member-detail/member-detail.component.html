@@ -1,0 +1,61 @@
+<div class="row">
+    <div *ngIf="member" class="col-3 card w-25 mr-5">
+        <div class="card p-1">
+            <div class="card-image text-center">
+                <img src="{{member.photoUrl}}" alt="{{member.name}}" class="card-image mb-4" style="width: 240px;">
+
+            </div>
+            <div class="card-body">
+                <h6 class="card-title text-center">
+                    <i class="fa fa-user mr-2"></i>
+                    {{member.userName}}
+                </h6>
+                <p class="card-text text-muted text-center">{{member.city}}</p>
+                <h6>Age :{{member.age}}</h6>
+                <h6>Gender :{{member.gender}}</h6>
+                <h6>Last Active : {{member.lastActive | date: 'short'}}</h6>
+                <h6>Member Since : {{member.created | date: 'short'}}</h6>
+                <h6>Last Active : {{member.lastActive | date: 'short'}}</h6>
+                <h6>City : {{member.city}}</h6>
+                <h6>Country : {{member.country}}</h6>
+            </div>
+            <div class="card-footer m-auto">
+                <button class="btn-primary">💝</button>
+                <button class="btn-primary">🧧</button>
+            </div>
+        </div>
+
+    </div>
+    <div style="box-sizing: border-box;" class="col-8">
+        <tabset>
+            <tab heading="About" id="tab1">
+                <h4>
+                    Description
+                </h4>
+                <p> {{member?.introduction}}</p>
+                <h4>Looking For</h4>
+                <p>{{member?.lookingFor}}</p>
+            </tab>
+            <tab heading="Interests">
+                <h4>
+                    Interests
+                </h4>
+                <p>{{member?.interest}}</p>
+            </tab>
+            <tab heading="photos">
+                <h5>Gallery</h5>
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
+                    style="display: inline-block;margin-bottom: 20px;"></ngx-gallery>
+            </tab>
+            <tab heading="Message" (selectTab)="getMessageForMember()">
+
+                <div class="row">
+                    <div class="row">
+                        <app-chat [Chats]="chats" [receiverUserName]="receiverUserName"></app-chat>
+                    </div>
+                </div>
+
+            </tab>
+        </tabset>
+    </div>
+</div>
