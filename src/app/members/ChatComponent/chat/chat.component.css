@@ -1,0 +1,23 @@
+ul{
+    list-style-type:none ;
+}
+.card-body{
+
+    height: 400px;
+    overflow-y: scroll;
+    width: 800px;
+    position: relative;
+}
+
+
+.header-left{
+    float: left;
+    width: 50%;
+    clear: both;
+}
+
+.header-right{
+    float: right;
+    width: 50%;
+    clear: both;
+}

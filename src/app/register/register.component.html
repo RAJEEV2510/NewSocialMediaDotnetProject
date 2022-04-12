@@ -1,0 +1,31 @@
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <div class="form-group">
+        <input type="text" class="form-control" name="username" [(ngModel)]="model.username" placeholder="Username"
+            required>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="password" [(ngModel)]="model.password" placeholder="password"
+            required>
+    </div>
+    <div class="form-group">
+        <input type="date" class="form-control" [(ngModel)]="model.dateOfBirth" name="dateOfBirth" placeholder="date"
+            required>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="model.knownAs" name="knownAs" placeholder="knownAs"
+            required>
+    </div>
+    <div class="form-group">
+        <h5>I am as</h5>
+        Male
+        <input type="radio" name="gender" value="male" placeholder="gender" [(ngModel)]="model.gender" required>
+        Female
+        <input type="radio" name="gender" value="female" placeholder="gender" [(ngModel)]="model.gender" required>
+    </div>
+    <div class="form-group text-center w-100">
+        <button class="btn btn-primary mr-5" type="submit">Register</button>
+        <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+    </div>
+
+</form>

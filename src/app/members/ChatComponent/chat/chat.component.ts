@@ -21,13 +21,12 @@ export class ChatComponent implements OnInit {
 
   sendMessage() {
 
-    this.chats.push({
-      senderUserName: this.userName,
-      receiverUserName: this.receiverUserName,
-      message: this.MessageSentToUser,
-      sentDate: new Date()
+
+    this.memberService.sendMessageToUser(this.receiverUserName, this.MessageSentToUser).subscribe(message => {
+      this.chats.push(message);
+      this.MessageSentToUser = "";
     })
-    this.MessageSentToUser = "";
+
 
   }
 }

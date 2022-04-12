@@ -1,0 +1,54 @@
+<div class="row container">
+    <div class="card-body" *ngIf="chats.length==0">
+        No messages yet ... say hi by usng the chat button and input box
+    </div>
+    <div class="card-body ">
+        <ul>
+            <li *ngFor="let chat of chats">
+
+                <div class="chat-body w-100">
+
+                    <div class="header-left w-25" *ngIf="chat.senderUserName!=userName">
+                        <span class="chat-img">
+                            <img class="rounded-circle" style="height: 40px;" [src]="chat.senderPhotoUrl">
+                        </span>
+                        <strong class="primary-font ml-2 mr-2">{{chat.senderUserName}}</strong>
+                        <small class="pull-right text-muted">
+                            <span class="glyphicon glyphicon-time"></span>{{chat.messageSent | date: 'short'}}
+                            <span class="text-danger" *ngIf="chat.dateRead==null && chat.senderUserName!=userName">
+                                (unread)
+                            </span>
+
+                            <span class="text-danger" *ngIf="chat.dateRead!==null && chat.senderUserName!=userName">
+                                (read) {{chat.dateRead | date: 'short'}}
+                            </span>
+                            <span> </span>
+                        </small>
+                        <p>{{chat.content}}</p>
+                    </div>
+                    <div class="header-right w-25" *ngIf="chat.senderUserName==userName">
+                        <span class="chat-img">
+                            <img class="rounded-circle" style="height: 40px;" [src]="chat.senderPhotoUrl">
+                        </span>
+                        <strong class="primary-font ml-2 mr-2">{{chat.senderUserName}}</strong>
+                        <small class="pull-right text-muted">
+                            <span class="glyphicon glyphicon-time"></span>{{chat.messageSent | date: 'short'}}
+                            <span class="text-danger" *ngIf="chat.dateRead==null && chat.senderUserName!=userName">
+                                (unread)
+                            </span>
+
+                            <span class="text-danger" *ngIf="chat.dateRead!==null && chat.senderUserName!=userName">
+                                (read) {{chat.dateRead | date: 'short'}}
+                            </span>
+                            <span> </span>
+                        </small>
+                        <p>{{chat.content}}</p>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <input type="text" class="w-75" [(ngModel)]="MessageSentToUser"> <button class="btn btn-primary w-25"
+        (click)="sendMessage()">Send</button>
+</div>

@@ -1,0 +1,66 @@
+<div class="d-flex flex-column h-100" cz-shortcut-listen="true">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" routerLink="/" routerLinkActive="active">DOTNET/ANGULAR</a>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse" *ngIf="accountService.currentUser$ | async">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" routerLinkActive="active"
+                                routerLink="/members" routerLinkActive="active">Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" routerLink="/lists" routerLinkActive="active">Lists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" routerLink="/messages" routerLinkActive="active">Messages</a>
+                        </li>
+                        <li class="nav-item" *appHasRole="['Admin','Moderator']">
+                            <a class="nav-link text-light" routerLink="/admin" routerLinkActive="active">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" routerLink="/errors" routerLinkActive="active">Errors</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div style="display: flex;margin-right: 20px;" *ngIf="accountService.currentUser$ |async">
+                <img [src]="photoUrl" class="rounded-circle mr-2" width="50" height="50" />
+                <h6>{{model.username}}</h6>
+            </div>
+            <div class="w-75" *ngIf="(accountService.currentUser$ | async)==null">
+                <form class="d-flex w-100" #loginfrom="ngForm" (ngSubmit)="login()" autocomplete="off">
+                    <input type="text" placeholder="enter username" name="username" [(ngModel)]="model.username"
+                        class="form-control w-50 mr-3 ">
+                    <input type="password" placeholder="password" name="password" [(ngModel)]="model.password"
+                        class="form-control w-50 mr-3 ">
+                    <button class="btn-warning btn">Login </button>
+                </form>
+            </div>
+            <div class="dropdown mr-5" *ngIf="accountService.currentUser$ | async">
+
+                <a class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false" class="dropdown-toggle text-light">Welcome User</a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li> <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a> </li>
+                    <li> <a class="dropdown-item" (click)="logout()">Logout</a></li>
+
+                </ul>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- Begin page content -->
+
+
+
+
+
+</div>
